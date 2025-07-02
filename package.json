@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev" : "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "express",
@@ -15,9 +15,10 @@
   "author": "Himanshu Mahajan",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.0.1",
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10" 
+    "nodemon": "^3.1.10"
   }
 }

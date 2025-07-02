@@ -1,9 +1,10 @@
+import 'dotenv/config'
 import express from 'express'
 
 const app = express();
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 
 //adding a middleware to parse incoming JSON requests.Not including this will give an error 

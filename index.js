@@ -1,10 +1,32 @@
 import 'dotenv/config'
 import express from 'express'
+import logger from "./logger.js";
+import morgan from "morgan";
+
 
 const app = express();
+const port = 3000 || process.env.PORT;
 
+//adding morgan for logging HTTP requests
+const morganFormat = ":method :url :status :response-time ms";
 
-const port = process.env.PORT || 3000;
+//adding middleware to log HTTP requests using morgan ans wiston
+//Morgan is used to log HTTP requests and Winston is used to log the messages in a file
+app.use(
+  morgan(morganFormat, {
+    stream: {
+      write: (message) => {
+        const logObject = {
+          method: message.split(" ")[0],
+          url: message.split(" ")[1],
+          status: message.split(" ")[2],
+          responseTime: message.split(" ")[3],
+        };
+        logger.info(JSON.stringify(logObject));
+      },
+    },
+  })
+);
 
 
 //adding a middleware to parse incoming JSON requests.Not including this will give an error 
